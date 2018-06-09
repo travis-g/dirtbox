@@ -71,6 +71,7 @@
       "scripts/vagrant.sh",
       "scripts/sudo.sh",
       "scripts/virtualbox.sh",
+      "scripts/install.sh",
       "scripts/minimize.sh"
     ],
     "type": "shell"

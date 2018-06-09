@@ -1,3 +1,12 @@
+# dirtbox
+
+Dirt-plain Vagrant box built on [Alpine][alpine].
+
+```console
+$ gnumfmt --to=iec-i --suffix=B $(wc -c <dirtbox.box)
+42MiB
+```
+
 ### Build
 
 ```console
@@ -14,3 +23,5 @@ $ vagrant up
 * Shared folders ()
 * Vagrantfile template to be included in Packer's post-processor as a default
 * Better update provisioners (including Vagrant-side)
+
+[alpine]: https://alpinelinux.org/

@@ -1,0 +1,6 @@
+
+*.box
+packer_cache
+.vagrant
+.DS_Store
+

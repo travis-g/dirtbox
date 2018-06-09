@@ -1,0 +1,86 @@
+{
+  "variables": {
+    "answers_file": "alpine.conf",
+    "cpus": "1",
+    "disk_size": "10240",
+    "memory": "1024",
+    "version": "3.7.0"
+  },
+  "builders": [{
+    "boot_command": [
+      "root<enter><wait>",
+      "ifconfig eth0 up && udhcpc -i eth0<enter><wait10>",
+      "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `answers_file`}}<enter><wait>",
+      "setup-alpine -f $PWD/{{user `answers_file`}}<enter><wait5>",
+      "vagrant<enter><wait>",
+      "vagrant<enter><wait>",
+      "<wait30>",
+      "y<enter>",
+      "<wait30>",
+      "<wait30>",
+      "rc-service sshd stop<enter>",
+      "mount /dev/sda3 /mnt<enter>",
+      "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config<enter>",
+      "umount /mnt<enter>",
+      "reboot<enter>"
+    ],
+    "boot_wait": "30s",
+    "communicator": "ssh",
+    "disk_size": "{{user `disk_size`}}",
+    "guest_additions_mode": "disable",
+    "guest_os_type": "Linux26_64",
+    "hard_drive_interface": "sata",
+    "headless": false,
+    "http_directory": "http",
+    "iso_checksum": "5a4b2588afd32e7024dd61d9558b77b03a4f3189cb4c9fc05e9e944fb780acdd",
+    "iso_checksum_type": "sha256",
+    "iso_urls": [
+      "http://dl-cdn.alpinelinux.org/alpine/v3.7/releases/x86_64/alpine-virt-{{user `version`}}-x86_64.iso"
+    ],
+    "shutdown_command": "/sbin/poweroff",
+    "ssh_password": "vagrant",
+    "ssh_username": "root",
+    "ssh_wait_timeout": "10m",
+    "type": "virtualbox-iso",
+    "vboxmanage": [
+      [
+        "modifyvm",
+        "{{.Name}}",
+        "--memory",
+        "{{user `memory`}}"
+      ],
+      [
+        "modifyvm",
+        "{{.Name}}",
+        "--cpus",
+        "{{user `cpus`}}"
+      ]
+    ],
+    "virtualbox_version_file": ".vbox_version"
+  }],
+  "provisioners": [{
+    "override": {
+      "virtualbox-iso": {
+        "execute_command": "/bin/sh '{{.Path}}'"
+      }
+    },
+    "scripts": [
+      "scripts/base.sh",
+      "scripts/update.sh",
+      "scripts/sshd.sh",
+      "scripts/vagrant.sh",
+      "scripts/sudo.sh",
+      "scripts/virtualbox.sh",
+      "scripts/minimize.sh"
+    ],
+    "type": "shell"
+  }],
+  "post-processors": [{
+    "include": [
+      "Vagrantsettings.yaml"
+    ],
+    "output": "dirtbox.box",
+    "type": "vagrant",
+    "vagrantfile_template": "Vagrantfile"
+  }]
+}

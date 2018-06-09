@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+if [ "$1" == "-r" ]; then reboot; fi
+if [ "$1" == "-h" ]; then halt; fi
+

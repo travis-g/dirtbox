@@ -13,8 +13,11 @@ Vagrant.configure(2) do |config|
     config.timezone.value = "EST"
   end
 
+  # mounts
+  config.vm.synced_folder "./dotfiles", "/home/vagrant/dotfiles"
+
   config.vm.provider "virtualbox" do |vb|
-    vb.gui = true
+    vb.gui = false
 
     vb.cpus = 2
     vb.memory = 1024
@@ -29,10 +32,15 @@ Vagrant.configure(2) do |config|
     vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-interval", 10000 ]
     vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-min-adjust", 100 ]
   end
+  
+  config.vm.provision "file", source: "bin/shutdown", destination: "/bin/shutdown"
 
   config.vm.provision "shell", run: "always", inline: <<-SHELL
-    apk add --upgrade apk-tools@edge
+    apk add --upgrade apk-tools
     apk cache -v sync
     apk upgrade -v
   SHELL
+
+  config.vm.provision "shell", path: "scripts/custom.sh"
+  config.vm.provision "shell", path: "scripts/dotfiles.sh"
 end

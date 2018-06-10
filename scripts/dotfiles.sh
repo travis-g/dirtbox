@@ -1,5 +1,9 @@
 set -ux
 
+# stow dotfiles
 cd /home/vagrant/dotfiles
-stow neofetch
+for DIR in $(ls -d */ | sed 's#/##')
+do
+  stow "$DIR"
+done
 

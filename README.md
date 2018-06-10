@@ -45,3 +45,5 @@ Local IP: 10.0.2.15
 [packer]: https://www.packer.io/
 [stow]: https://www.gnu.org/software/stow/
 [vagrant]: https://www.vagrantup.com/
+
+<!-- vim: ts=2 sw=2 softtabstop=2 expandtab -->

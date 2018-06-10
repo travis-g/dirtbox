@@ -17,7 +17,6 @@
       "<wait30>",
       "y<enter>",
       "<wait30>",
-      "<wait30>",
       "rc-service sshd stop<enter>",
       "mount /dev/sda3 /mnt<enter>",
       "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config<enter>",

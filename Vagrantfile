@@ -33,14 +33,15 @@ Vagrant.configure(2) do |config|
     vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-min-adjust", 100 ]
   end
   
-  config.vm.provision "file", source: "bin/shutdown", destination: "/bin/shutdown"
+  # config.vm.provision "file", source: "bin/shutdown", destination: "/bin/shutdown"
 
   config.vm.provision "shell", run: "always", inline: <<-SHELL
+    setup-apkcache /var/cache/apk
     apk add --upgrade apk-tools
     apk cache -v sync
     apk upgrade -v
   SHELL
 
   config.vm.provision "shell", path: "scripts/custom.sh"
-  config.vm.provision "shell", path: "scripts/dotfiles.sh"
+  config.vm.provision "shell", path: "scripts/dotfiles.sh", privileged: false
 end

@@ -13,3 +13,4 @@ curl -sSo /home/vagrant/.ssh/authorized_keys \
 
 chown -R vagrant:vagrant /home/vagrant/.ssh
 chmod -R go-rwsx /home/vagrant/.ssh
+

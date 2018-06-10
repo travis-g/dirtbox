@@ -13,4 +13,5 @@ curl -sSo /home/vagrant/.ssh/authorized_keys \
 
 chown -R vagrant:vagrant /home/vagrant/.ssh
 chmod -R go-rwsx /home/vagrant/.ssh
-
+# change login shell manually
+sed -i'' 's;/home/vagrant:/bin/ash;/home/vagrant:/bin/bash;' /etc/passwd

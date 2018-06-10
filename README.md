@@ -38,7 +38,7 @@ Local IP: 10.0.2.15
 
 * Better "update" provisioners (including Vagrant-side)
 * Descriptions of what each Packer/Vagrant script does
-* Change shell from `ash` to `bash` during provisioning (edit `/etc/passwd`)
+* Fine tune `<wait>` instructions when building
 
 [alpine]: https://alpinelinux.org/
 [aports]: https://github.com/alpinelinux/aports

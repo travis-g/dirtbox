@@ -1,4 +1,5 @@
-set -exu
+#!/bin/sh
+set -eux
 
 date > /etc/vagrant_box_build_time
 

@@ -1,5 +1,5 @@
+#!/bin/sh
 set -eux
-# Set up sudo
 
 apk add sudo
 adduser vagrant wheel

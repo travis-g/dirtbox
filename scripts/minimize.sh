@@ -1,3 +1,4 @@
+#!/bin/sh
 set -ux
 
 # wipe /tmp

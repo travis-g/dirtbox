@@ -1,3 +1,4 @@
+#!/bin/sh
 set -ux
 
 # allow Packer to log in via SSH

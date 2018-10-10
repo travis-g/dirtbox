@@ -1,3 +1,4 @@
+#!/bin/sh
 set -ux
 
 apk update && apk upgrade

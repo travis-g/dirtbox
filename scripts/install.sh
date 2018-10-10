@@ -1,3 +1,4 @@
+#!/bin/sh
 set -ux
 
 # add edge repos
@@ -6,4 +7,3 @@ http://dl-cdn.alpinelinux.org/alpine/edge/main
 @edgecommunity http://dl-cdn.alpinelinux.org/alpine/edge/community
 EOF
 apk update -v
-

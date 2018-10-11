@@ -1,0 +1,2 @@
+# force answers file to have Unix-style line endings
+alpine.conf eol=lf

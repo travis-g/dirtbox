@@ -9,7 +9,7 @@ echo "vagrant:vagrant" | chpasswd
 mkdir -pm 700 /home/vagrant/.ssh
 
 # get public Vagrant SSH key
-curl -sSo /home/vagrant/.ssh/authorized_keys \
+wget -O /home/vagrant/.ssh/authorized_keys \
   'https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub'
 
 chown -R vagrant:vagrant /home/vagrant/.ssh

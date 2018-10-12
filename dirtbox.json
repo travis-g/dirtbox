@@ -85,8 +85,8 @@
   "variables": {
     "answers_file": "alpine.conf",
     "cpus": "1",
-    "disk_size": "5120",
-    "memory": "512",
+    "disk_size": "1024",
+    "memory": "256",
     "release": "3.7.1",
     "series": "3.7"
   }

@@ -1,6 +1,9 @@
 #!/bin/sh
-set -ux
+
+cd /home/vagrant/dotfiles || (
+    echo "~/dotfiles not found! Skipping."
+    exit 0
+)
 
 # stow dotfiles
-cd /home/vagrant/dotfiles
 find * -type d -maxdepth 0 -exec stow {} \;

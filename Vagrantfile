@@ -7,20 +7,20 @@ settings = YAML.load_file('Vagrantsettings.yaml')
 $root = File.dirname(__FILE__)
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "dirtbox.box"
+  config.vm.box = settings["vm"]["box"]
 
   if Vagrant.has_plugin?("vagrant-timezone")
-    config.timezone.value = "EST"
+    config.timezone.value = settings["vm"]["timezone"]
   end
 
   # mounts
   config.vm.synced_folder "./dotfiles", "/home/vagrant/dotfiles"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.gui = false
+    vb.gui = settings["vm"]["gui"]
 
-    vb.cpus = 2
-    vb.memory = 1024
+    vb.cpus = settings["vm"]["cpus"]
+    vb.memory = settings["vm"]["memory"]
     vb.customize [
       'modifyvm', :id,
       '--natdnshostresolver1', 'on',
@@ -32,8 +32,11 @@ Vagrant.configure(2) do |config|
     vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-interval", 10000 ]
     vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-min-adjust", 100 ]
   end
-  
-  # config.vm.provision "file", source: "bin/shutdown", destination: "/bin/shutdown"
+
+  # Copy the custom shutdown wrapper so that we can halt with the CLI
+  config.vm.provision "shell", run: "always", inline: <<-SHELL
+    cp /vagrant/bin/shutdown /bin/shutdown
+  SHELL
 
   config.vm.provision "shell", run: "always", inline: <<-SHELL
     setup-apkcache /var/cache/apk

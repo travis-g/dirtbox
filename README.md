@@ -9,7 +9,7 @@ $ gnumfmt --to=iec-i --suffix=B $(wc -c <dirtbox.box)
 
 * All of the basic configurations are done by Packer when making the `.box`, including setting `/etc/motd` with the build date.
 * The version of VirtualBox's Guest Additions used is an [aport][aports] (Guest Additions has to be manually patched to work with Alpine.)
-* I keep some basic configs in `dotfiles/` and symlink them into place with [GNU Stow][stow].
+* Configs can be organized in `dotfiles/` and symlinked into place with [GNU Stow][stow]. Note that line endings of any config files shared to the Vagrant box should have Unix-style/LF line endings.
 * Tweak the `custom.sh` script to add/remove packages.
 
 ### Usage

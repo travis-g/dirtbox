@@ -1,3 +1,4 @@
+#!/bin/sh
 set -eux
 
 # Get VirtualBox Guest Additions (mess)

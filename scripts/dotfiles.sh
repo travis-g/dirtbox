@@ -1,9 +1,9 @@
-set -ux
+#!/bin/sh
+
+cd /home/vagrant/dotfiles || (
+    echo "~/dotfiles not found! Skipping."
+    exit 0
+)
 
 # stow dotfiles
-cd /home/vagrant/dotfiles
-for DIR in $(ls -d */ | sed 's#/##')
-do
-  stow "$DIR"
-done
-
+find * -type d -maxdepth 0 -exec stow {} \;

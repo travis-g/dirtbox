@@ -1,5 +1,8 @@
-#!/bin/sh -e
+#!/bin/sh
+# A simple wrapper script around BusyBox's halt and reboot tools. Vagrant's halt
+# command requires a `shutdown` executable to be somewhere in $PATH, but BusyBox
+# doesn't create that by default: Vagrant will move this file into /bin as root
+# during the provisioning process.
 
 if [ "$1" == "-r" ]; then reboot; fi
 if [ "$1" == "-h" ]; then halt; fi
-

@@ -1,6 +1,6 @@
-
-*.box
 packer_cache
+output-virtualbox-iso
 .vagrant
-.DS_Store
+*.box
 
+.DS_Store

@@ -2,6 +2,6 @@
 */alpine.conf text eol=lf
 
 # LF line endings for scripts and configs
-dotfiles/* eol=lf
+dotfiles/** eol=lf
 bin/* eol=lf
 *.sh text eol=lf

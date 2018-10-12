@@ -2,10 +2,8 @@
 vm:
   box: "dirtbox.box"
   cpus: 2
+  gui: false
+  hostname: dirtbox
   memory: 1024
   name: dirtbox
-  hostname: dirtbox
   timezone: EST
-conf:
-  packages:
-  - neofetch
